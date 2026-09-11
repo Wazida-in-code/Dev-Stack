@@ -1,0 +1,66 @@
+import React, { use } from 'react';
+import type { techType } from '../../technoType';
+// import TechCard from './TechCard';
+
+interface ItechAllCard {
+    techPromise : Promise<techType[]>
+}
+
+const TechAllCard = ({techPromise} : ItechAllCard) => {
+    const data = use(techPromise)
+    return (
+        <div className='w-11/12 mx-auto'>
+            <h2 className='text-4xl font-bold my-3'>Explore the <span className='bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent'>Technologies</span></h2>
+            <p className='text-[#64748B] mb-4'>Pick one technology per category to build your ideal stack.</p>
+                {/* boxes */}
+            <div className='grid grid-cols-12 gap-6'>
+                {/* 70%-left */}
+                <div className='col-span-9 h-100'>
+                    <div className='grid grid-cols-3 gap-6'>
+                        {data.map((technology) => {
+                            return (
+                                <div className='border my-3 p-5 w-full rounded-2xl'>
+
+                                    <div className='flex justify-between mb-3 ml-4'>
+                                        <img className='w-9 h-9' src={technology.icon} alt="" />
+                                        <p>{technology.badge}</p>
+                                    </div>
+
+                                    <h2 className='font-semibold text-2xl mb-2'>{technology.name}</h2>
+                                    <p className='text-[#64748B] mb-5'>{technology.description}</p>
+
+                                    <div className='gap-3 mb-3 flex justify-between items-center'>
+                                        <p className='text-[#475569] bg-[#F1F5F9] p-2 rounded-md'>{technology.category}</p>
+                                        <p className='text-[#64748B]'>{technology.difficulty}</p>
+                                        <p className='text-[#334155]'>{`⭐${technology.rating}`}</p>
+                                    </div>
+
+                                    <button className='bg-[#0A0F1D] text-white py-2 rounded-md px-[70px]'>Add to Stack</button>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
+
+                    {/* 30%-right */}
+                <div className=' grid grid-rows-2 gap-y-0.5 bg-white shadow col-span-3 h-[280px] rounded-2xl mr-4 mt-[16px]'>
+
+
+                     <div className='m-[30px]'>
+                        <h2 className='font-semibold text-xl pt-[20px]'>Your Stack</h2>
+                        <p className='text-[#94A3B8] pt-[10px]'>No technologies selected yet.</p>
+                    </div>
+
+                    <div className=' m-[30px] w-[200px] h-[50px]'>
+                        <p className='text-[#94A3B8] rounded-2xl border-dashed p-7 border border-[#94A3B8]'>Your stack is empty.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    )
+    
+}
+
+
+export default TechAllCard;
