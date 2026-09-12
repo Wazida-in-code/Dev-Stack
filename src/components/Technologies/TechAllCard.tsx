@@ -1,5 +1,6 @@
 import React, { use, useState } from 'react';
 import type { techType } from '../../technoType';
+import { CiCircleRemove } from 'react-icons/ci';
 // import TechCard from './TechCard';
 
 interface ItechAllCard {
@@ -19,12 +20,14 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
         }
     }
 
-    // const handleShowStack = (icon : string):void => {
-    //     // const stackedTech = [...inStack, technology]
-    //     // setInStack(stackedTech)
-    //     console.log(icon);
-    // }
+    const handleRemover = (id: string):void => {
+        setStack(stack.filter(item => item.id !== id))
+    }
 
+
+    const handleRemoveAll = () => {
+        setStack([])
+    }
 
     return (
         <div className='w-11/12 mx-auto'>
@@ -53,7 +56,7 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
                                         <p className='text-[#334155]'>{`⭐${technology.rating}`}</p>
                                     </div>
 
-                                    <button onClick={() => handleAddToStack(technology)} className={`py-2 rounded-md px-17.5 hover:cursor-pointer ${stack.some(item => item.id === technology.id) ? 'text-pink-700 bg-pink-200 px-15' : 'bg-[#0A0F1D] text-white'}`}>{stack.some(item => item.id === technology.id) ? "Added to Stack" : "Add to Stack" }</button>
+                                    <button onClick={() => handleAddToStack(technology)} className={`py-2 rounded-md px-17.5 hover:cursor-pointer ${stack.some(item => item.id === technology.id) ? 'text-pink-700 bg-pink-200 px-[60px]' : 'bg-[#0A0F1D] text-white'}`}>{stack.some(item => item.id === technology.id) ? "Added to Stack" : "Add to Stack" }</button>
                                 </div>
                             )
                         })}       
@@ -75,11 +78,15 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
                                         <h2 className='font-semibold text-xl text-[#0F172A]'>{item.name}</h2>
                                         <p className='text-[#94A3B8]'>{item.category}</p>
                                     </div>
+                                    <button onClick={() => handleRemover(item.id)} className='cursor-pointer'><CiCircleRemove size={30} /></button>
                                 </div>
                             )})}</p>
                     </div>
+                    {
+                        stack.length === 0 ? "" : <button onClick={handleRemoveAll} className='py-2 px-[50px] ml-[35px] border border-[#ED8C85 text-[#D82C20] font-semibold rounded-md'>Remove All</button>
+                    }
 
-                    <div className=' m-[30px] w-[200px] h-[50px]'>
+                    <div className='m-[30px] w-[200px] h-[50px]'>
                         <p className={`${stack.length === 0} ? text-[#94A3B8] rounded-2xl border-dashed p-7 border border-[#94A3B8] : border-0`}>{stack.length === 0 ? "Your stack is empty." : ""}</p>
                     </div>
                 </div>
