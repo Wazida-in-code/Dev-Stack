@@ -8,6 +8,7 @@ interface ItechAllCard {
 
 const TechAllCard = ({techPromise} : ItechAllCard) => {
     const [stack, setStack] = useState<techType[]>([])
+    // const [inStack, setInStack] = useState<string[]>([])
     const data = use(techPromise)
 
     const handleAddToStack = (technology : techType) => {
@@ -17,6 +18,12 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
         setStack([...stack, technology])
         }
     }
+
+    // const handleShowStack = (icon : string):void => {
+    //     // const stackedTech = [...inStack, technology]
+    //     // setInStack(stackedTech)
+    //     console.log(icon);
+    // }
 
 
     return (
@@ -56,11 +63,27 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
                     {/* 30%-right */}
                 <div className=' grid grid-rows-2 gap-y-0.5 bg-white shadow col-span-3 h-[280px] rounded-2xl mr-4 mt-[16px]'>
 
-
                      <div className='m-[30px]'>
-                        <h2 className='font-semibold text-xl pt-[20px]'>Your Stack</h2>
-                        <p className='text-[#94A3B8] pt-[10px]'>No technologies selected yet.</p>
+                        <h2 className='font-semibold text-xl'>Your Stack</h2>
+                        <p className='text-[#94A3B8] pt-[10px]'>{stack.length === 0 ? "No technologies selected yet." : stack.map((item) => {
+                                return(
+                                <div key={item.id} className='flex rounded-md border-[#E2E8F0] border border-2 p-3 gap-4'>
+                                    <div>
+                                        <img className='w-9 h-9 mt-2' src={item.icon} alt="" />
+                                    </div>
+                                    <div>
+                                        <h2 className='font-semibold text-xl text-[#0F172A]'>{item.name}</h2>
+                                        <p className='text-[#94A3B8]'>{item.category}</p>
+                                    </div>
+                                </div>
+                            )})}</p>
                     </div>
+
+                        {
+                            
+                        }
+
+                    
 
                     <div className=' m-[30px] w-[200px] h-[50px]'>
                         <p className='text-[#94A3B8] rounded-2xl border-dashed p-7 border border-[#94A3B8]'>Your stack is empty.</p>
