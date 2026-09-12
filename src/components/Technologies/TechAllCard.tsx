@@ -37,7 +37,7 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
                     <div className='grid grid-cols-3 gap-6'>
                         {data.map((technology) => {
                             return (
-                                <div key={technology.id} className='border border-[#e0e9f3] my-3 p-5 w-full rounded-2xl hover:transition-transform duration-300 hover:scale-105'>
+                                <div key={technology.id} className={`border my-3 p-5 w-full rounded-2xl hover:transition-transform duration-300 hover:scale-105 ${stack.some(item => item.id === technology.id) ? 'border-pink-400 shadow-pink-200 border-2' : 'border-[#e0e9f3]'}`}>
 
                                     <div className='flex justify-between mb-3 ml-4'>
                                         <img className='w-9 h-9' src={technology.icon} alt="" />
@@ -53,7 +53,7 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
                                         <p className='text-[#334155]'>{`⭐${technology.rating}`}</p>
                                     </div>
 
-                                    <button onClick={() => handleAddToStack(technology)} className={`py-2 rounded-md px-17.5 hover:cursor-pointer ${stack.some(item => item.id === technology.id) ? 'text-pink-700 bg-pink-200' : 'bg-[#0A0F1D] text-white'}`}>{stack.some(item => item.id === technology.id) ? "Added to Stack" : "Add to Stack" }</button>
+                                    <button onClick={() => handleAddToStack(technology)} className={`py-2 rounded-md px-17.5 hover:cursor-pointer ${stack.some(item => item.id === technology.id) ? 'text-pink-700 bg-pink-200 px-15' : 'bg-[#0A0F1D] text-white'}`}>{stack.some(item => item.id === technology.id) ? "Added to Stack" : "Add to Stack" }</button>
                                 </div>
                             )
                         })}       
@@ -61,13 +61,13 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
                 </div>
 
                     {/* 30%-right */}
-                <div className=' grid grid-rows-2 gap-y-0.5 bg-white shadow col-span-3 h-[280px] rounded-2xl mr-4 mt-[16px]'>
+                <div className='gap-y-0.5 bg-white shadow col-span-3 rounded-2xl mr-4 mt-[16px]'>
 
                      <div className='m-[30px]'>
                         <h2 className='font-semibold text-xl'>Your Stack</h2>
                         <p className='text-[#94A3B8] pt-[10px]'>{stack.length === 0 ? "No technologies selected yet." : stack.map((item) => {
                                 return(
-                                <div key={item.id} className='flex rounded-md border-[#E2E8F0] border border-2 p-3 gap-4'>
+                                <div key={item.id} className='flex rounded-md border-[#E2E8F0] border border-2 p-3 gap-4 mb-4'>
                                     <div>
                                         <img className='w-9 h-9 mt-2' src={item.icon} alt="" />
                                     </div>
@@ -79,16 +79,9 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
                             )})}</p>
                     </div>
 
-                        {
-                            
-                        }
-
-                    
-
                     <div className=' m-[30px] w-[200px] h-[50px]'>
-                        <p className='text-[#94A3B8] rounded-2xl border-dashed p-7 border border-[#94A3B8]'>Your stack is empty.</p>
+                        <p className={`${stack.length === 0} ? text-[#94A3B8] rounded-2xl border-dashed p-7 border border-[#94A3B8] : border-0`}>{stack.length === 0 ? "Your stack is empty." : ""}</p>
                     </div>
-
                 </div>
             </div>
         </div>
