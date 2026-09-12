@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import type { techType } from '../../technoType';
 // import TechCard from './TechCard';
 
@@ -7,7 +7,18 @@ interface ItechAllCard {
 }
 
 const TechAllCard = ({techPromise} : ItechAllCard) => {
+    const [stack, setStack] = useState<techType[]>([])
     const data = use(techPromise)
+
+    const handleAddToStack = (technology : techType) => {
+        if (stack.some(item => item.id === technology.id)){
+            setStack(stack.filter(item => item.id !== technology.id))
+        }else{
+        setStack([...stack, technology])
+        }
+    }
+
+
     return (
         <div className='w-11/12 mx-auto'>
             <h2 className='text-4xl font-bold my-3'>Explore the <span className='bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent'>Technologies</span></h2>
@@ -19,7 +30,7 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
                     <div className='grid grid-cols-3 gap-6'>
                         {data.map((technology) => {
                             return (
-                                <div className='border my-3 p-5 w-full rounded-2xl'>
+                                <div key={technology.id} className='border border-[#e0e9f3] my-3 p-5 w-full rounded-2xl hover:transition-transform duration-300 hover:scale-105'>
 
                                     <div className='flex justify-between mb-3 ml-4'>
                                         <img className='w-9 h-9' src={technology.icon} alt="" />
@@ -35,10 +46,10 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
                                         <p className='text-[#334155]'>{`⭐${technology.rating}`}</p>
                                     </div>
 
-                                    <button className='bg-[#0A0F1D] text-white py-2 rounded-md px-[70px]'>Add to Stack</button>
+                                    <button onClick={() => handleAddToStack(technology)} className={`py-2 rounded-md px-17.5 hover:cursor-pointer ${stack.some(item => item.id === technology.id) ? 'text-pink-700 bg-pink-200' : 'bg-[#0A0F1D] text-white'}`}>{stack.some(item => item.id === technology.id) ? "Added to Stack" : "Add to Stack" }</button>
                                 </div>
                             )
-                        })}
+                        })}       
                     </div>
                 </div>
 
