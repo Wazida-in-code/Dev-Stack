@@ -10,7 +10,6 @@ interface ItechAllCard {
 
 const TechAllCard = ({techPromise} : ItechAllCard) => {
     const [stack, setStack] = useState<techType[]>([])
-    // const [inStack, setInStack] = useState<string[]>([])
     const data = use(techPromise)
     const handleAddToStack = (technology : techType) => {
         if (stack.some(item => item.id === technology.id)){
@@ -38,14 +37,14 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
                 {/* boxes */}
             <div className='grid grid-cols-12 gap-6'>
                 {/* 70%-left */}
-                <div className='col-span-9'>
-                    <div className='grid grid-cols-3 gap-6'>
+                <div className='cols-span-12 md:col-span-9'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                         {data.map((technology) => {
                             return (
                                 <div key={technology.id} className={`border my-3 p-5 w-full rounded-2xl hover:transition-transform duration-300 hover:scale-105 ${stack.some(item => item.id === technology.id) ? 'border-pink-400 shadow-pink-200 border-2' : 'border-[#e0e9f3]'}`}>
 
                                     <div className='flex justify-between mb-3 ml-4'>
-                                        <img className='w-9 h-9' src={technology.icon} alt="" />
+                                        <img className='w-9 h-2 md:h-9' src={technology.icon} alt="" />
                                         <p className={`${color[technology.badge]}`}>{technology.badge}</p>
                                     </div>
 
@@ -66,7 +65,7 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
                 </div>
 
                     {/* 30%-right */}
-                <div className='gap-y-0.5 bg-white shadow col-span-3 rounded-2xl mr-4'>
+                <div className='gap-y-0.5 bg-white shadow col-span-12 md:col-span-3 rounded-2xl mr-4'>
 
                      <div className='m-[30px]'>
                         <h2 className='font-semibold text-xl'>Your Stack</h2>

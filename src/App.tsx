@@ -14,11 +14,9 @@ const techApiFetch = async(): Promise<techType[]> => {
 }
 
 
-
 function App() {
 const techPromise = techApiFetch()
 
-console.log(techPromise);
   return (
     <div className="relative">
       <Navbar />
