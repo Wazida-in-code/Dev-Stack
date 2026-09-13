@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import Banner from "./components/Banner"
 import Navbar from "./components/Navbar"
-// import Technologies from "./components/Technologies/Technologies";
 import type { techType } from "./technoType";
 import TechAllCard from "./components/Technologies/TechAllCard";
 import Footer from "./components/Footer";

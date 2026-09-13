@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react';
+import { use, useState } from 'react';
 import type { techType } from '../../technoType';
 import { CiCircleRemove } from 'react-icons/ci';
 import { toast } from 'react-toastify';
