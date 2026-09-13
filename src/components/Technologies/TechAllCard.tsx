@@ -69,10 +69,12 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
 
                      <div className='m-[30px]'>
                         <h2 className='font-semibold text-xl'>Your Stack</h2>
-                        <p className='text-[#94A3B8] pt-[10px]'>{stack.length === 0 ? "No technologies selected yet." : stack.map((item) => {
+                        <p className='text-[#94A3B8] pt-[10px]'>{stack.length === 0 ? "No technologies selected yet." : (
+                        <>
+                            <p className='mb-4'>{stack.length} Technology Selected</p>
+                            {stack.map((item) => {
                                 return(
                                     <div>
-                                    <p className='mb-4'>{stack.length} Technology Selected</p>
                                 <div key={item.id} className='flex rounded-md border-[#E2E8F0] border border-2 p-3 gap-4 mb-4'>
                                     <div>
                                         <img className='w-9 h-9 mt-2' src={item.icon} alt="" />
@@ -84,7 +86,7 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
                                     <button onClick={() => handleRemover(item.id)} className='cursor-pointer'><CiCircleRemove size={30} /></button>
                                 </div>
                                 </div>
-                            )})}</p>
+                            )})  }</>)}</p>
                     </div>
                     {
                         stack.length === 0 ? "" : <button onClick={handleRemoveAll} className='py-2 px-[50px] ml-[35px] border border-[#ED8C85 text-[#D82C20] font-semibold rounded-md cursor-pointer'>Remove All</button>
@@ -99,6 +101,7 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
     )
     
 }
+
 
 
 export default TechAllCard;
