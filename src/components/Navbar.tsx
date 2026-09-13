@@ -14,7 +14,7 @@ const Navbar = () => {
                     <li className='text-slate-600'>Contact</li>
                 </ul>
                 <div className="flex items-center gap-5">
-                    <h2 className='text-[#334155]'>Sign In</h2>
+                    <button className='text-[#334155]'>Sign In</button>
                     <button className='text-white bg-[#D91B7E] px-5 py-2 rounded-full border border-black'>Sign Up</button>
                 </div>
             </div>

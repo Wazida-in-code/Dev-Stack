@@ -1,3 +1,5 @@
+import type color from "./components/Technologies/color"
+
 export interface techType {
     id: string,
     name: string,
@@ -6,5 +8,7 @@ export interface techType {
     icon: string,
     rating: number,
     difficulty: string,
-    badge: string
+    badge: Badge
 }
+
+export type Badge = keyof typeof color

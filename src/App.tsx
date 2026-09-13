@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar"
 // import Technologies from "./components/Technologies/Technologies";
 import type { techType } from "./technoType";
 import TechAllCard from "./components/Technologies/TechAllCard";
+import Footer from "./components/Footer";
 
 
 const techApiFetch = async(): Promise<techType[]> => {
@@ -23,15 +24,11 @@ console.log(techPromise);
       <Navbar />
       <Banner />
 
-    {/* <Suspense fallback={<h2 className="text-2xl text-black">Loading...</h2>}> */}
-      {/* <Technologies techPromise={techPromise} /> */}
-    {/* </Suspense> */}
-
     <Suspense fallback={<h2 className="text-2xl text-black">Loading...</h2>}>
     <TechAllCard techPromise={techPromise} />
     </Suspense>
 
-
+    <Footer />
     </div>
   )
 }
