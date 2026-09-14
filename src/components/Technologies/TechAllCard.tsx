@@ -37,7 +37,7 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
                 {/* boxes */}
             <div className='grid grid-cols-12 gap-6'>
                 {/* 70%-left */}
-                <div className='cols-span-12 md:col-span-9'>
+                <div className='cols-span-12 md:col-span-8'>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                         {data.map((technology) => {
                             return (
@@ -57,7 +57,7 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
                                         <p className='text-[#334155]'>{`⭐${technology.rating}`}</p>
                                     </div>
 
-                                    <button onClick={() => handleAddToStack(technology)} disabled={stack.some(item => item.id === technology.id)} className={`py-2 rounded-md px-17.5 disabled:cursor-not-allowed hover:cursor-pointer ${stack.some(item => item.id === technology.id) ? 'text-pink-700 bg-pink-200 px-[60px]' : 'bg-[#0A0F1D] text-white'}`}>{stack.some(item => item.id === technology.id) ? "Added to Stack" : "Add to Stack" }</button>
+                                    <button onClick={() => handleAddToStack(technology)} disabled={stack.some(item => item.id === technology.id)} className={`py-2 rounded-md px-17.5 disabled:cursor-not-allowed hover:cursor-pointer ${stack.some(item => item.id === technology.id) ? 'text-pink-700 bg-pink-200 px-[40px]' : 'bg-[#0A0F1D] text-white px-[54px]'}`}>{stack.some(item => item.id === technology.id) ? "Added to Stack" : "Add to Stack" }</button>
                                 </div>
                             )
                         })}       
@@ -65,7 +65,7 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
                 </div>
 
                     {/* 30%-right */}
-                <div className='gap-y-0.5 bg-white shadow col-span-12 md:col-span-3 rounded-2xl mr-4'>
+                <div className='gap-y-0.5 bg-white shadow col-span-12 md:col-span-4 rounded-2xl mr-4'>
 
                      <div className='m-[30px]'>
                         <h2 className='font-semibold text-xl'>Your Stack</h2>
@@ -73,13 +73,14 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
                         <>
                             <p className='mb-4'>{stack.length} Technology Selected</p>
                             {stack.map((item) => {
+                                console.log(item);
                                 return(
                                     <div>
-                                <div key={item.id} className='flex rounded-md border-[#E2E8F0] border border-2 p-3 gap-4 mb-4'>
+                                <div key={item.id} className='flex justify-between rounded-md border-[#E2E8F0] border border-2 p-3 gap-4 mb-4'>
                                     <div>
                                         <img className='w-9 h-9 mt-2' src={item.icon} alt="" />
                                     </div>
-                                    <div>
+                                    <div className='mr-16'>
                                         <h2 className='font-semibold text-xl text-[#0F172A]'>{item.name}</h2>
                                         <p className='text-[#94A3B8]'>{item.category}</p>
                                     </div>
@@ -89,10 +90,10 @@ const TechAllCard = ({techPromise} : ItechAllCard) => {
                             )})  }</>)}</p>
                     </div>
                     {
-                        stack.length === 0 ? "" : <button onClick={handleRemoveAll} className='py-2 px-[50px] ml-[35px] border border-[#ED8C85 text-[#D82C20] font-semibold rounded-md cursor-pointer'>Remove All</button>
+                        stack.length === 0 ? "" : <button onClick={handleRemoveAll} className='py-2 px-[97px] ml-[35px] border border-[#ED8C85 text-[#D82C20] font-semibold rounded-md cursor-pointer'>Remove All</button>
                     }
 
-                    <div className='m-[30px] w-[200px] h-[50px]'>
+                    <div className='ml-[75px] m-[50px] w-[200px] h-[50px]'>
                         <p className={`${stack.length === 0 ? 'text-[#94A3B8] rounded-2xl border-dashed p-7 border border-[#94A3B8]' : 'border-0'}`}>{stack.length === 0 ? "Your stack is empty." : ""}</p>
                     </div>
                 </div>
